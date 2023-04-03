@@ -9,10 +9,10 @@ steps {
 }
 
 
-stage('Security') { 
-steps { 
-        } 
-}
+// stage('Security') { 
+// steps { 
+//         } 
+// }
 
 stage('Package') {
     when {
@@ -27,9 +27,9 @@ stage('Package') {
     }
 }
 
-stage('Deploy') {
+// stage('Deploy') {
          
-}
+// }
 }
 
 }
