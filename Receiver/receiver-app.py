@@ -16,25 +16,13 @@ def process_event(event, endpoint):
 
     logger.debug(f'Received {endpoint} event with trace id {trace_id}')
 
-    # TODO: create KafkaClient object assigning hostname and port from app_config to named parameter "hosts"
-    # and store it in a variable named 'client'
     client = KafkaClient(hosts= "http://localhost:29092")
 
-
-
-    # TODO: index into the client.topics array using topic from app_config
-    # and store it in a variable named topic
     topic = client.topics['events']
 
-    # TODO: call get_sync_producer() on your topic variable
-    # and store the return value in variable named producer
     producer = topic.get_sync_producer()
     
 
-    # TODO: create a dictionary with three properties:
-    # type (equal to the event type, i.e. endpoint param)
-    # datetime (equal to the current time, formatted as per our usual format)
-    # payload (equal to the entire event passed into the function)
     my_dict = {
         "type":  endpoint, 
         "daytime": datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%SZ'), 
@@ -42,15 +30,9 @@ def process_event(event, endpoint):
 
     }
 
-    # TODO: convert the dictionary to a json string
-    to_json = json.dumps(my_dict)
-    # TODO: call the produce() method of your producer variable and pass in your json string
-    # note: encode the json string as utf-8
-    producer.produce(to_json.encode('utf-8'))
 
-    
-    # TODO: log "PRODUCER::producing x event" where x is the actual event type
-    # TODO: log the json string
+    to_json = json.dumps(my_dict)
+    producer.produce(to_json.encode('utf-8'))
     logger.debug(f"PRODUCER::producing {event} event")
     logger.debug(to_json)
 
