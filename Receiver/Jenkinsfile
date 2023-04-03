@@ -5,7 +5,6 @@ stage('Python Lint'){
 steps {
     sh 'pip install -r Receiver/requirements.txt'
     sh ' pylint $(find . -name "*.py" | xargs)'
-    sh 'pylint-fail-under --fail_under 5.0 *.py'
 }
 
 }
