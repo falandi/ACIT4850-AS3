@@ -4,7 +4,7 @@ stages {
 stage('Python Lint'){
 steps {
     sh 'pip install -r Receiver/requirements.txt'
-    sh ' pylint $(find . -name "Receiver/*.py" | xargs)'
+    sh ' pylint $(find . -name "/Receiver*.py" | xargs)'
 }
 
 }
