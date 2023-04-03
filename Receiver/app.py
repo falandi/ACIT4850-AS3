@@ -14,12 +14,8 @@ def process_event(event, endpoint):
     trace_id = str(uuid.uuid4())
     event['trace_id'] = trace_id
 
-    # TODO: call logger.debug and pass in message "Received event <type> with trace id <trace_id>"
+ 
     logger.debug(f"Received event {endpoint} with trace id {trace_id}")
-
-    # headers = { 'Content-Type': 'application/json' }
-
-    # TODO: update requests.post to use app_config property instead of hard-coded URL
     client = KafkaClient(
         hosts="kafka:9092", socket_timeout_ms=100000
     )
@@ -41,12 +37,6 @@ def process_event(event, endpoint):
     logger.debug(msg)
 
     return NoContent, 201
-
-    # TODO: call logger.debug and pass in message "Received response with trace id <trace_id>, status code <status_code>"
-    #logger.debug(f"Received response with trace id {trace_id}, status code {res.status_code}")
-
-    # pass
-    # # return res.text, res.status_code
 
 # Endpoints
 def buy(body):
